@@ -1,12 +1,14 @@
 var express = require('express');
 var app = express();
-
+var bodyParser = require('body-parser');
 
 // MIDDLEWARE
-var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 //SET PORT
 app.set('port', 3000);
+
 // ROUTER
 var router = express.Router();
 
@@ -21,5 +23,13 @@ app.use('/api', router);
 
 
 router.get('/', function(req, res){
-  res.json({message: "We did it"});
+  res.json({message: 'All active session in a 5 mile radius'});
 });
+router.post('/', function(req, res){
+  console.log(req.body)
+  console.log("qwe");
+})
+
+router.get('/:id', function(req, res){
+  res.json({message: 'One session details'})
+})
