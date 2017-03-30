@@ -21,15 +21,20 @@ console.log('listening on port 3000');
 //ROUTE PREFIX
 app.use('/api', router);
 
-
-router.get('/', function(req, res){
-  res.json({message: 'All active session in a 5 mile radius'});
-});
-router.post('/', function(req, res){
-  console.log(req.body)
-  console.log("qwe");
+// ROUTES
+router
+  .get('/sessions', function(req, res){
+    res.json({message: 'All active session in a 5 mile radius'});
 })
-
-router.get('/:id', function(req, res){
-  res.json({message: 'One session details'})
+  .post('/sessions', function(req, res){
+    console.log(req.body)
+})
+  .get('/sessions/:id', function(req, res){
+    res.json({message: 'One session details'})
+})
+  .delete('/sessions/:id', function(req, res){
+    res.json({message: 'deleted that session'})
+})
+  .put('/sessions/:id', function(req, res){
+    res.json({message: 'edited the session'})
 })
